@@ -1,4 +1,4 @@
-# Kayak Last-Minute - Projet étudiant (pandas + matplotlib)
+# Kayak Last-Minute - Projet 
 
 Ce projet reprend la logique pédagogique des notebooks fournis et utilise **pandas** pour la gestion des données et **matplotlib** pour la visualisation.
 
@@ -10,18 +10,6 @@ Ce projet reprend la logique pédagogique des notebooks fournis et utilise **pan
 - `tests/test_basic.py` : tests unitaires avec `unittest`
 - `figs/` : dossier pour les figures générées
 
-## Installation
-1. Créer un environnement virtuel (optionnel) :
-   ```bash
-   python -m venv venv
-   source venv/bin/activate  # mac/linux
-   venv\\Scripts\\activate  # windows
-   ```
-2. Installer les dépendances :
-   ```bash
-   pip install -r requirements.txt
-   ```
-
 ## Usage
 - Lancer le script principal :
   ```bash
@@ -31,8 +19,3 @@ Ce projet reprend la logique pédagogique des notebooks fournis et utilise **pan
   ```bash
   python -m unittest discover -v
   ```
-
-## Notes pour débutant
-- Le projet utilise pandas : DataFrame = table en mémoire.
-- Les fonctions dans `modules/` sont commentées simplement en français.
-- Le graphique est sauvegardé dans `figs/price_by_destination.png`.
