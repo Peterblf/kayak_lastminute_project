@@ -1,28 +1,33 @@
-from modules.data import sample_offers
-from modules.search import find_offers
-from modules.utils import print_offers
+from modules.data import load_sample_offers, save_sample_csv
+from modules.processing import filter_offers, summarize_by_destination
+from modules.viz import plot_price_by_destination
+import pandas as pd
 
 def main():
-    """Fonction principale du programme"""
+    df = load_sample_offers()   # DataFrame en mémoire
+    save_sample_csv(df, 'offers_sample.csv')
 
-    # On charge des offres fictives (comme une petite base de données)
-    offers = sample_offers()
-
-    # On définit les critères de recherche
+    
     criteria = {
-        'origin': 'Paris',              # ville de départ
-        'destination': 'Rome',          # destination
-        'max_price': 300,               # prix maximum en euros
-        'days_until_departure': 2       # dans combien de jours maximum
+        'origin': 'Paris',# critères pour filtrer
+        'destination': None,
+        'max_price': 300,
+        'days_until_departure': 3
     }
 
-    # On cherche les offres qui correspondent à ces critères
-    results = find_offers(offers, criteria)
+    # filtrer avec les critères
+    filtered = filter_offers(df, criteria)
 
-    # On affiche le résultat à l'écran
-    print("\n--- Résultats de la recherche ---\n")
-    print_offers(results)
+    print("\n-- Offres filtrées (aperçu) --\n")
+    print(filtered.to_string(index=False))
+    
+    summary = summarize_by_destination(filtered)# prix moyen 
+    print("\n-- Prix moyen par destination --\n")
+    print(summary)
 
-# Si ce fichier est lancé directement, on exécute la fonction main()
+    # save
+    plot_price_by_destination(summary, outpath='figs/price_by_destination.png')
+    print("\nGraphique sauvegardé dans 'figs/price_by_destination.png'.\n")
+
 if __name__ == '__main__':
     main()
