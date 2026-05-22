@@ -5,27 +5,25 @@ import pandas as pd
 
 
 def main():
-    df = load_sample_offers()  # DataFrame en mémoire
+    df = load_sample_offers()  
     save_sample_csv(df, "offers_sample.csv")
 
     criteria = {
-        "origin": "Paris",  # critères pour filtrer
+        "origin": "Paris",
         "destination": None,
         "max_price": 300,
         "days_until_departure": 3,
     }
 
-    # filtrer avec les critères
     filtered = filter_offers(df, criteria)
 
     print("\n-- Offres filtrées (aperçu) --\n")
     print(filtered.to_string(index=False))
 
-    summary = summarize_by_destination(filtered)  # prix moyen
+    summary = summarize_by_destination(filtered) 
     print("\n-- Prix moyen par destination --\n")
     print(summary)
 
-    # save
     plot_price_by_destination(summary, outpath="figs/price_by_destination.png")
     print("\nGraphique sauvegardé dans 'figs/price_by_destination.png'.\n")
 
