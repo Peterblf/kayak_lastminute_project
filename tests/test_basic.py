@@ -13,9 +13,8 @@ class TestPandasProject(unittest.TestCase):
             "max_price": 300,
             "days_until_departure": 3,
         }
-        filtered = filter_offers(df, criteria)  # on doit trouver au moins une offre
+        filtered = filter_offers(df, criteria) 
         self.assertTrue(len(filtered) >= 1)
-        # toutes les lignes doivent respecter les critères
         for _, row in filtered.iterrows():
             self.assertEqual(row["origin"], "Paris")
             self.assertEqual(row["destination"], "Rome")
@@ -24,7 +23,6 @@ class TestPandasProject(unittest.TestCase):
     def test_summarize(self):
         df = load_sample_offers()
         summary = summarize_by_destination(df)
-        # summary doit être dataframe avec index non vide
         self.assertIn("average_price", summary.columns)
         self.assertIn("count", summary.columns)
 
