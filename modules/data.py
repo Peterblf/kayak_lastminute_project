@@ -2,7 +2,7 @@ import pandas as pd
 from datetime import datetime, timedelta
 
 
-def load_sample_offers():  # dataframe pandas pour des fausses offres
+def load_sample_offers(): 
 
     today = datetime.now().date()
     data = [
@@ -21,6 +21,6 @@ def load_sample_offers():  # dataframe pandas pour des fausses offres
     return df
 
 
-def save_sample_csv(df, filename="offers_sample.csv"):  # save dans un csv
+def save_sample_csv(df, filename="offers_sample.csv"):
 
     df.to_csv(filename, index=False, date_format="%Y-%m-%d")
